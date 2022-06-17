@@ -56,6 +56,62 @@ ___
 4) 교차에 의해 부모의 유전자가 자손에게 상속될 수 있고, 돌연변이가 일어날 수 있다.->crossover/mutation
 5) 다음 세대의 잠재해들은 평균적으로 전 세대보다 더 좋아진다고 볼 수 있는데, 이러한 진화과정은 종료조건을 만족할 때까지 반복한다.
 
-![20220617_165558](https://user-images.githubusercontent.com/100942836/174253264-32497da1-c2c4-4487-bb4a-d7e7131bf6c2.png)
+![20220617_170711](https://user-images.githubusercontent.com/100942836/174255609-7274f7a1-9023-4b34-bb37-2ddef41191e9.png)
+ 
+ 
+먼저 간단하게 유전알고리즘의 여러 과정을 코드로 구현해보았다.
+
+1) Selection
+
+매 세대에서 각 개체의 적응도를 평가하여 이에 따라 다음 세대에 생존할 개체들을 확률적으로 선별하는 과정
+```
+int selection(double arr[], int arr2[]) {
+    int a = rand() % 100 + 1;
+    printf("랜덤 비율: %d%%\n", a);
+    if ((0 < a) && (a <= arr[0])) {
+        return arr2[0];
+    }
+    else if ((arr[0] < a) && (a <= arr[0] + arr[1])) {
+        return arr2[1];
+    }
+    else if ((arr[0] + arr[1] < a) && (a <= arr[0] + arr[1] + arr[2])) {
+        return arr2[2];
+    }
+    else if ((arr[0] + arr[1] + arr[2] < a) && (a <= arr[0] + arr[1] + arr[2] + arr[3])) {
+        return arr2[3];
+    }
+}
+```
+2) Crossover
+
+교차에 쓰이는 두 개의 부모해를 고르기 위한 연산자이다. 다양한 선택 연산자들이 있으나 공통된 원칙은 우수한 해가 선택될 확률이 높아야 한다는 것이다.
+
+```
+void CrossOver(int x, int y, int cross_x[i], int cross_y[i]){
+ int binary_x[5]={0}; 
+ int binary_y[5]={0}; //크기가 5인 배열 binary_x, binary_y을 0으로 초기화
+ //여기서는 교차할 수를 10진수에서 2진수로 바꾸는 과정은 생략
+ for (int i = 0; i < 5; i++) {
+        if (i >= 0 && i < 2) {
+            cross_x[i] = binary_x[i];
+            cross_y[i] = binary_y[i];
+        }
+        else if (i >= 2) {
+            cross_x[i] = binary_y[i];
+            cross_y[i] = binary_x[i];
+        }
+    }
+
+    printf("\ncross_x: ");
+    for (int i = 4; i >= 0; i--) { // 4 3 2 1 0,  01000
+        printf("%d ", cross_x[i]);
+    }
+    printf("\ncross_y: ");
+    for (int i = 4; i >= 0; i--) {
+        printf("%d ", cross_y[i]);
+    }
+}
+```
+3) Mutation
 
 
