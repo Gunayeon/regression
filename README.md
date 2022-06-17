@@ -127,5 +127,6 @@ void Mutation(int arr[]) {  //돌연변이 연산
 }
 ```
 
+## Genetic Argotithm On Data
 
 
