@@ -114,4 +114,18 @@ void CrossOver(int x, int y, int cross_x[i], int cross_y[i]){
 ```
 3) Mutation
 
+어진 해의 유전자 내의 유전 인자의 순서 혹은 값이 임의로 변경되어 다른 해로 변형되는 연산이다.
+
+```
+void Mutation(int arr[]) {  //돌연변이 연산
+    if (arr[3] == 0)arr[3] = 1;
+    else if (arr[3] == 1)arr[3] = 0;
+    printf("mutate(3번) : ");
+    for (int i = 4; i >= 0; i--) {
+        printf("%d ", arr[i]);
+    }
+}
+```
+
+
 
