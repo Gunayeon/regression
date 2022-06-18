@@ -150,7 +150,9 @@ void Mutation(int arr[]) {  //돌연변이 연산
 
 3. 이전 단계에서 도출한 모든 염색체의 fitness값을 기준으로 우수 염색체를 선택한다.
 
-4.
+4. 이제 다음 세대 염색체를 생성하는데, 이 과정에서 crossover과 mutation이 일어난다.(crossover과 mutation은 위에 설명했으므로 생략한다)
+
+5. 앞서 소개한 과정을 여러번 반복해 stopping criteria를 만족하면 유전 알고리즘을 종료하고 우수염색체를 최종선택한다.
 
 ```
 #include <stdio.h>
